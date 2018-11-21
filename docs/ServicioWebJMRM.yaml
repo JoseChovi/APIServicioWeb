@@ -1,0 +1,175 @@
+openapi: 3.0.1
+info:
+  title: ServicioWeb API
+  description: >-
+    Esta API provee diferentes servicios para obtener información sobre el
+    Servicio Web.
+  version: '1.0'
+  termsOfService: 'https://asistex.es/terms'
+  contact:
+    name: ServicioWeb API
+    url: 'https://asistex.es/terms'
+    email: asistex@gmail.com
+servers:
+  - url: Nada todavia
+    description: Beta server
+paths:
+  /ServicioWebEstadisticas:
+    get:
+      tags:
+        - Estadisticas
+      summary: encontrar las estadísticas del ServicioWeb por ID
+      description: obtiene las estadísticas del ServicioWeb en el servidor
+      operationId: getEstadisticasServicioWeb
+      parameters:
+        - name: personaID
+          in: query
+          description: estadisticas del ID indicado
+          schema:
+            type: integer
+            format: int32
+            example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          description: Invalid input
+  /ServicioWebRutas:
+    get:
+      tags:
+        - Rutas
+      summary: Ruta por id de la persona y fecha
+      description: Obtiene la ruta de la persona dado su id y la fecha deseada
+      operationId: getRutaID
+      parameters:
+        - in: query
+          name: personaID
+          description: obtiene la ruta de una persona a través de su id y la fecha
+          schema:
+            type: integer
+            format: int32
+            example: 1
+        - in: query
+          name: fecha
+          description: obtiene la ruta de una persona a través de su id y la fecha
+          schema:
+            type: string
+            format: date
+            example: "28-11-2018"    
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          description: Invalid input
+  /ServicioWebPrediccion:
+    get:
+      tags:
+        - Prediccion
+      summary: predicción sobre una persona y la fecha
+      description: obtiene una predicción sobre una persona y una fecha dada
+      operationId: getPrediccionPersona
+      parameters:
+        - name: personaID
+          in: query
+          description: Obtiene la predicción sobre una persona dado su id y la fecha
+          schema:
+            type: integer
+            format: int32
+            example: 1
+        - in: query
+          name: fecha
+          description: obtiene la ruta de una persona a través de su id y la fecha
+          schema:
+            type: string
+            format: date
+            example: "28-11-2018" 
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          description: Invalid input
+  /ServicioWebAlertas:
+    get:
+      tags:
+        - Alertas
+      summary: Alertas del servicio Web
+      description: Obtiene las alertas a través del servicio web de una persona
+      operationId: getAlertaServicioWeb
+      parameters:
+        - name: personaID
+          in: query
+          description: obtiene las alerta del servicio web dado el id de una persona
+          schema:
+            type: integer
+            format: int32
+            example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          description: Invalid input
+components:
+  schemas:
+    ServicioWebEstadisticas:
+      type: object
+      properties:
+        idPersona:
+          type: integer
+          format: int64
+    ServicioWebRutas:
+      type: object
+      properties:
+        idPersona:
+          type: integer
+          format: int64
+        fecha:
+          type: string
+          format: date
+          example: '2018-11-10'
+    ServicioWebPrediccion:
+      type: object
+      properties:
+        idPersona:
+          type: integer
+          format: int64
+        fecha:
+          type: string
+          format: date
+          example: '2018-11-10'
+    ServicioWebAlertas:
+      type: object
+      properties:
+        idPersona:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: Successful response
+      content:
+        text/plain:
+          schema:
+            type: boolean
+            example: true
+    '404':
+      description: Not found response
+      content:
+        text/plain:
+          schema:
+            title: Endpoint not found
+            type: string
+            example: Not found
+    '405':
+      description: Invalid input
+      content:
+        text/plain:
+          schema:
+            type: boolean
+            example: true

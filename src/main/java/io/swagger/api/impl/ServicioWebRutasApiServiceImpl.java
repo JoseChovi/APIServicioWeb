@@ -24,6 +24,7 @@ import javax.validation.constraints.*;
 public class ServicioWebRutasApiServiceImpl extends ServicioWebRutasApiService {
     
     @Override
+    //ruta seguida, parameters: distacia horafin horainicio id
     public Response getRutaID( Integer personaID,  Date fecha, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

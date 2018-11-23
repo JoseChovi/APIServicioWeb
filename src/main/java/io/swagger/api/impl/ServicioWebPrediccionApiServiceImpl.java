@@ -5,10 +5,15 @@ import io.swagger.model.*;
 
 import java.util.Date;
 
+import java.util.ArrayList;
+import io.swagger.api.impl.persona;
+import io.swagger.api.impl.personaPred;
 
 import java.util.Map;
 import java.util.List;
 import io.swagger.api.NotFoundException;
+
+import java.util.Date;
 
 import java.io.InputStream;
 
@@ -23,10 +28,35 @@ import javax.validation.constraints.*;
 
 public class ServicioWebPrediccionApiServiceImpl extends ServicioWebPrediccionApiService {
     
+     public ArrayList<personaPred> addPersonaPred(){
+       ArrayList<personaPred> xd = new ArrayList<personaPred>();
+       personaPred a1 = new personaPred(1,new Date("1122-11-11"),89.1);
+       xd.add(a1);
+       personaPred a2 = new personaPred(2,new Date("11/02/2012"),95.1);
+       xd.add(a2);
+       return xd;
+   }
+    
+    
     @Override
     public Response getPrediccionPersona( Integer personaID,  Date fecha, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        ArrayList<personaPred> fin = this.addPersonaPred();
+        
+        for (int i = 0; i < fin.size(); i++) {
+            System.out.println("MOSTRANDO LISTA: " + fin.get(i).getID() + " " + fin.get(i).getFecha() + " " + fin.get(i).getPrediccion());
+        }
+        
+        personaPred x = new personaPred();
+        personaPred n = new personaPred();
+        for (int i = 0; i < fin.size(); i++) {
+            x = fin.get(i);
+            if (x.getID() == personaID && x.getFecha() == fecha){
+                n = fin.get(i);
+            }
+        }
+        
+        
+        return Response.ok().entity(n).build();
     }
     
 }

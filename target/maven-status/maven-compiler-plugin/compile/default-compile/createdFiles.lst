@@ -19,6 +19,7 @@ io/swagger/api/ApiException.class
 io/swagger/api/factories/ServicioWebRutasApiServiceFactory.class
 io/swagger/model/ServicioWebEstadisticas.class
 io/swagger/api/ServicioWebPrediccionApi.class
+io/swagger/api/impl/personaRutas.class
 io/swagger/api/factories/ServicioWebPrediccionApiServiceFactory.class
 io/swagger/api/ApiResponseMessage.class
 io/swagger/api/ServicioWebEstadisticasApiService.class

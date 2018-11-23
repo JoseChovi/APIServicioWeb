@@ -5,7 +5,8 @@ import io.swagger.model.*;
 
 import java.util.Date;
 
-
+import io.swagger.api.impl.personaRutas;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 import io.swagger.api.NotFoundException;
@@ -23,11 +24,37 @@ import javax.validation.constraints.*;
 
 public class ServicioWebRutasApiServiceImpl extends ServicioWebRutasApiService {
     
+    
+     public ArrayList<personaRutas> addPersonaRutas(){
+       ArrayList<personaRutas> xd = new ArrayList<personaRutas>();
+      // String st = "1122-11-11";
+       personaRutas a1 = new personaRutas(1,"1122-11-11",89.1,"18:00h","19:21h");
+       xd.add(a1);
+       personaRutas a2 = new personaRutas(2,"11/02/2012",95.1,"18:00h","19:21h");
+       xd.add(a2);
+       return xd;
+   }
+    
     @Override
     //ruta seguida, parameters: distacia horafin horainicio id
-    public Response getRutaID( Integer personaID,  Date fecha, SecurityContext securityContext) throws NotFoundException {
+    public Response getRutaID( Integer personaID,  String fecha, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        ArrayList<personaRutas> fin = this.addPersonaRutas();
+        for (int i = 0; i < fin.size(); i++) {
+            System.out.println("MOSTRANDO LISTA: " + fin.get(i).getID() + " " + fin.get(i).getFecha() + " " + fin.get(i).getDistancia());
+        }
+        
+        personaRutas x = new personaRutas();
+        personaRutas n = new personaRutas();
+        for (int i = 0; i < fin.size(); i++) {
+            x = fin.get(i);
+            if (x.getID() == personaID && x.getFecha().equals(fecha)){
+                n = fin.get(i);
+            }
+        }
+        
+        
+        return Response.ok().entity(n).build();
     }
     
 }

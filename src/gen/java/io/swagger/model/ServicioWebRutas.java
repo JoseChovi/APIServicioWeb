@@ -56,7 +56,7 @@ public class ServicioWebRutas   {
   
   
   
-  private Date fecha = null;
+  private String fecha = null;
   
 
   
@@ -97,7 +97,7 @@ public class ServicioWebRutas   {
 
   
   
-  public ServicioWebRutas fecha(Date fecha) {
+  public ServicioWebRutas fecha(String fecha) {
     this.fecha = fecha;
     return this;
   }
@@ -120,12 +120,12 @@ public class ServicioWebRutas   {
   
   @ApiModelProperty(value = "")
 
-  public Date getFecha() {
+  public String getFecha() {
     return fecha;
   }
   
 
-  public void setFecha(Date fecha) {
+  public void setFecha(String fecha) {
     this.fecha = fecha;
   }
   

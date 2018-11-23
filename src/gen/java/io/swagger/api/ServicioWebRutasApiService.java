@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 
 public abstract class ServicioWebRutasApiService {
     
-    public abstract Response getRutaID( Integer personaID, Date fecha,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response getRutaID( Integer personaID, String fecha,SecurityContext securityContext) throws NotFoundException;
     
 }
 

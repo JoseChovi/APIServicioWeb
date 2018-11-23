@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class personaPred {
     Integer id;
-    Date fecha;
+    String fecha;
     Double prediccion;
 
 
@@ -12,7 +12,7 @@ public class personaPred {
       this.fecha = null;
       this.prediccion = null;
   }
-  public personaPred(Integer id, Date fecha, Double prediccion){
+  public personaPred(Integer id, String fecha, Double prediccion){
         this.id = id;
         this.fecha = fecha;
         this.prediccion = prediccion;
@@ -21,7 +21,7 @@ public class personaPred {
     public Integer getID(){
         return this.id;
     }
-     public Date getFecha(){
+     public String getFecha(){
         return this.fecha;
     }
      public Double getPrediccion(){

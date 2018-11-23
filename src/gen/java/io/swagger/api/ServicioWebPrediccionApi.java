@@ -71,7 +71,7 @@ public class ServicioWebPrediccionApi  {
         
         @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = Void.class) })
     public Response getPrediccionPersona(@ApiParam(value = "Obtiene la predicción sobre una persona dado su id y la fecha") @QueryParam("personaID") Integer personaID
-,@ApiParam(value = "obtiene la ruta de una persona a través de su id y la fecha") @QueryParam("fecha") Date fecha
+,@ApiParam(value = "obtiene la ruta de una persona a través de su id y la fecha") @QueryParam("fecha") String fecha
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.getPrediccionPersona(personaID,fecha,securityContext);

@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 
 public abstract class ServicioWebPrediccionApiService {
     
-    public abstract Response getPrediccionPersona( Integer personaID, Date fecha,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response getPrediccionPersona( Integer personaID, String fecha,SecurityContext securityContext) throws NotFoundException;
     
 }
 

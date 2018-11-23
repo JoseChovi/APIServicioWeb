@@ -30,16 +30,17 @@ public class ServicioWebPrediccionApiServiceImpl extends ServicioWebPrediccionAp
     
      public ArrayList<personaPred> addPersonaPred(){
        ArrayList<personaPred> xd = new ArrayList<personaPred>();
-       personaPred a1 = new personaPred(1,new Date("1122-11-11"),89.1);
+      // String st = "1122-11-11";
+       personaPred a1 = new personaPred(1,"1122-11-11",89.1);
        xd.add(a1);
-       personaPred a2 = new personaPred(2,new Date("11/02/2012"),95.1);
+       personaPred a2 = new personaPred(2,"11/02/2012",95.1);
        xd.add(a2);
        return xd;
    }
     
     
     @Override
-    public Response getPrediccionPersona( Integer personaID,  Date fecha, SecurityContext securityContext) throws NotFoundException {
+    public Response getPrediccionPersona( Integer personaID,  String fecha, SecurityContext securityContext) throws NotFoundException {
         ArrayList<personaPred> fin = this.addPersonaPred();
         
         for (int i = 0; i < fin.size(); i++) {
@@ -50,7 +51,7 @@ public class ServicioWebPrediccionApiServiceImpl extends ServicioWebPrediccionAp
         personaPred n = new personaPred();
         for (int i = 0; i < fin.size(); i++) {
             x = fin.get(i);
-            if (x.getID() == personaID && x.getFecha() == fecha){
+            if (x.getID() == personaID && x.getFecha().equals(fecha)){
                 n = fin.get(i);
             }
         }

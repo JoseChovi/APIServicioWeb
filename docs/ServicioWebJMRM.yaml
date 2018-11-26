@@ -11,7 +11,7 @@ info:
     url: 'https://asistex.es/terms'
     email: asistex@gmail.com
 servers:
-  - url: Nada todavia
+  - url: 'https://serviciowebapi.herokuapp.com/'
     description: Beta server
 paths:
   /ServicioWebEstadisticas:

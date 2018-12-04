@@ -8,7 +8,12 @@ import io.swagger.api.impl.alerta;
 import java.util.Map;
 import java.util.List;
 import io.swagger.api.NotFoundException;
+import io.swagger.api.basededatos.ConexionD;
 
+import java.util.*;
+import java.text.DateFormat;
+import java.util.concurrent.ThreadLocalRandom;
+import java.text.SimpleDateFormat;
 import java.io.InputStream;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -37,6 +42,12 @@ public class ServicioWebAlertasApiServiceImpl extends ServicioWebAlertasApiServi
     @Override
     public Response getAlertaServicioWeb( Integer personaID, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
+        
+        //Conexion a la base de datos
+        ConexionDB bd= new ConexionDB();
+        bd.Conexion();
+        
+        
         ArrayList<alerta> fin = this.addalert();
         
         for (int i = 0; i < fin.size(); i++) {
@@ -52,9 +63,17 @@ public class ServicioWebAlertasApiServiceImpl extends ServicioWebAlertasApiServi
             }
         }
         
+        //Generar el fecha_hora
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    Date date = new Date();
+        String fecha_hora=dateFormat.format(date);
+        
+        int t_respuesta=ThreadLocalRandom.current().nextInt(10, 30 + 1);
+
+        //Insertar en la BD
+         bd.insertarAlertas(t_respuesta, fecha_hora);
         
         return Response.ok().entity(n).build();
     }
     
 }
-

@@ -4,7 +4,11 @@ import io.swagger.api.*;
 import io.swagger.model.*;
 
 import java.util.Date;
-
+import java.util.*;
+import java.text.DateFormat;
+import java.util.concurrent.ThreadLocalRandom;
+import java.text.SimpleDateFormat;
+import io.swagger.api.basededatos.ConexionDB;
 import java.util.ArrayList;
 import io.swagger.api.impl.persona;
 import io.swagger.api.impl.personaPred;
@@ -43,6 +47,15 @@ public class ServicioWebPrediccionApiServiceImpl extends ServicioWebPrediccionAp
     public Response getPrediccionPersona( Integer personaID,  String fecha, SecurityContext securityContext) throws NotFoundException {
         ArrayList<personaPred> fin = this.addPersonaPred();
         
+        //Conexion a la base de datos
+        ConexionDB bd= new ConexionDB();
+        bd.Conexion();
+        
+        //Generar el fecha_hora
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    Date date = new Date();
+        String fecha_hora=dateFormat.format(date);
+        
         for (int i = 0; i < fin.size(); i++) {
             System.out.println("MOSTRANDO LISTA: " + fin.get(i).getID() + " " + fin.get(i).getFecha() + " " + fin.get(i).getPrediccion());
         }
@@ -56,6 +69,11 @@ public class ServicioWebPrediccionApiServiceImpl extends ServicioWebPrediccionAp
             }
         }
         
+        int t_respuesta=ThreadLocalRandom.current().nextInt(10, 30 + 1);
+        int porcentaje=ThreadLocalRandom.current().nextInt(10, 90 + 1);
+        
+         //Insertar en la BD
+         bd.insertarPrediccion(t_respuesta, fecha_hora, porcentaje);
         
         return Response.ok().entity(n).build();
     }

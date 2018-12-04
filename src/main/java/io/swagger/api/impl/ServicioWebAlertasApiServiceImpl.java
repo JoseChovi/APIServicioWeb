@@ -8,7 +8,7 @@ import io.swagger.api.impl.alerta;
 import java.util.Map;
 import java.util.List;
 import io.swagger.api.NotFoundException;
-import io.swagger.api.basededatos.ConexionD;
+import io.swagger.api.basededatos.ConexionDB;
 
 import java.util.*;
 import java.text.DateFormat;
@@ -46,7 +46,7 @@ public class ServicioWebAlertasApiServiceImpl extends ServicioWebAlertasApiServi
         //Conexion a la base de datos
         ConexionDB bd= new ConexionDB();
         bd.Conexion();
-        
+        //coment
         
         ArrayList<alerta> fin = this.addalert();
         

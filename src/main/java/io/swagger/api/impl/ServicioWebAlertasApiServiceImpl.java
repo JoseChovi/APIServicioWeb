@@ -4,7 +4,7 @@ import io.swagger.api.*;
 import io.swagger.model.*;
 
 import io.swagger.api.impl.alerta;
-
+import java.sql.Timestamp;
 import java.util.Map;
 import java.util.List;
 import io.swagger.api.NotFoundException;
@@ -66,7 +66,7 @@ public class ServicioWebAlertasApiServiceImpl extends ServicioWebAlertasApiServi
         //Generar el fecha_hora
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Date date = new Date();
-        String fecha_hora=dateFormat.format(date);
+        Timestamp fecha_hora= new Timestamp(date.getTime());
         
         int t_respuesta=ThreadLocalRandom.current().nextInt(10, 30 + 1);
 

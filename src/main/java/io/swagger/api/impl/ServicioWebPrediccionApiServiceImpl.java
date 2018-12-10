@@ -2,7 +2,7 @@ package io.swagger.api.impl;
 
 import io.swagger.api.*;
 import io.swagger.model.*;
-
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.*;
 import java.text.DateFormat;
@@ -54,7 +54,7 @@ public class ServicioWebPrediccionApiServiceImpl extends ServicioWebPrediccionAp
         //Generar el fecha_hora
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Date date = new Date();
-        String fecha_hora=dateFormat.format(date);
+        Timestamp fecha_hora= new Timestamp(date.getTime());
         
         for (int i = 0; i < fin.size(); i++) {
             System.out.println("MOSTRANDO LISTA: " + fin.get(i).getID() + " " + fin.get(i).getFecha() + " " + fin.get(i).getPrediccion());
